@@ -73,7 +73,7 @@ def get_new_risk_and_uncertainty(Insulin,SkinThickness,BloodPressure,Glucose,Pre
     selected_semesters=selected_semesters[selected_semesters['cluster']==semester_cluster]
     
     total_cases=len(selected_semesters)
-    failed_cases=len(selected_semesters[selected_semesters['Outcome']==True])
+    failed_cases=len(selected_semesters[selected_semesters['Outcome']==1])
     risk=failed_cases/total_cases
     return risk,total_cases
 
@@ -83,7 +83,7 @@ def get_forest_risk_and_uncertainty(Insulin,SkinThickness,BloodPressure,Glucose,
     risk=0
     if (prediction):
         risk=1
-    certainty=0.7355
+    certainty=0.7669
     return risk,certainty
     
 opt_st=[]
@@ -136,7 +136,7 @@ body = dbc.Container(
                 dbc.Col(
                     [
                         html.H2("Patient Data"),
-                        html.H3("Glucose"),
+                        html.H3("Diabetes"),
                         daq.GraduatedBar(id='Glucose',
                                          color={"gradient":True,"ranges":{"red":[0,6],"yellow":[6,8],"green":[8,10]}},
                                          showCurrentValue=True,
